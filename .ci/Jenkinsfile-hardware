@@ -319,8 +319,8 @@ pipeline {
               }
               steps {
                 checkoutSCM()
-                sh 'make px4_fmu-v5_debug'
-                sh 'make px4_fmu-v5_debug bootloader_elf'
+                // sh 'make px4_fmu-v5_debug'
+                // sh 'make px4_fmu-v5_debug bootloader_elf'
                 sh 'ccache -s'
                 stash includes: 'build/*/*.elf, platforms/nuttx/Debug/*, platforms/nuttx/NuttX/nuttx/tools/nuttx-gdbinit, Tools/HIL/*', name: 'px4_fmu-v5_debug'
               }
