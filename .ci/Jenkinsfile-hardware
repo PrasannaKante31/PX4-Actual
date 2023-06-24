@@ -1,7 +1,14 @@
 #!/usr/bin/env groovy
 
 pipeline {
-  agent none
+  agent {
+    label 'ubuntu-agent'
+  }
+  /*
+  agent {
+    label 'name of that agent'
+  }
+  */
   stages {
     stage('Hardware Test') {
 
@@ -298,6 +305,7 @@ pipeline {
             //       }
             //     }
             //   }
+            //insted of "//" use "/*       */" okaiyt will help to comment n number of lines
             //   post {
             //     always {
             //       sh 'cat /tmp/pyserial_spy_file.txt || true'
@@ -311,12 +319,12 @@ pipeline {
         stage("px4_fmu-v5_debug") {
           stages {
             stage("build px4_fmu-v5_debug") {
-              agent {
-                docker {
+              /*agent {
+                docker {which agent will be used then
                   image 'px4io/px4-dev-nuttx-focal:2021-09-08'
                   args '--cpu-shares 512 -e CCACHE_BASEDIR=$WORKSPACE -v ${CCACHE_DIR}:${CCACHE_DIR}:rw'
                 }
-              }
+              }*/ //try this
               steps {
                 checkoutSCM()
                 sh 'make px4_fmu-v5_debug'
